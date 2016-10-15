@@ -236,9 +236,6 @@
         
         function drawLegend(breaks) {
 
-            // function code will go in here
-            // console.log(breaks);
-
             var legend = L.control({
                 position: 'topleft'
             });
@@ -255,7 +252,7 @@
                     div.innerHTML +=
                         '<span style="background:' + color + '"></span> ' +
                         '<label>' + (breaks[i][0] * 100).toLocaleString() + ' &mdash; ' +
-                        (breaks[i][1] * 100).toLocaleString() + '</label>';
+                        (breaks[i][1] * 100).toLocaleString() + '%</label>';
                 }
 
                 return div;
