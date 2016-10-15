@@ -110,25 +110,35 @@
 
 
     <script>
+        
+        /////////////////////////////////////
+        // ALL OF THE JAVASCRIPT GOES HERE //
+        /////////////////////////////////////
+        
+        // jQuery for html Titles
+        $("h1").html("Rented Households in Kentucky");
+        $("h2").html(" ");
+        
+        // variables (for map options) 
         var options = {
             center: [37.8, -85.8],
             zoom: 7,
             zoomControl: false
         }
 
+        // create a map element in the DOM
         var map = L.map('map', options);
         map.addControl( L.control.zoom({ position: 'topright' }));
 
+        // more variables
         var dataLayer,
-            attribute = "OWNED_MORT",
-            norm = "OWNER";
+            attribute = "RENTER",
+            norm = "OCCUPIED";
         //console.log(dataLayer);
 
+        
+        // initialize the map with jQuery
         $.getJSON("ky_counties_housing.json", function (data) {
-
-            // console.log(data);
-
-            //            L.geoJson(data).addTo(map);
 
             dataLayer = L.geoJson(data, {
                 style: function (feature) {
@@ -141,27 +151,49 @@
                 }
             }).addTo(map);
 
-            // add a call to a new function named drawMap here
             drawMap();
-
+        
         });
+        
 
+        
+        /////////////////////////////
+        // FUNCTIONS DEFINED BELOW //
+        /////////////////////////////
 
         function drawMap() {
 
             var breaks = getClassBreaks();
+            var hoverColor = '#04A777';
 
             dataLayer.eachLayer(function (layer) {
+                var properColor = getColor(layer.feature.properties[attribute] / layer.feature.properties[norm], breaks);
                 layer.setStyle({
-                    fillColor: getColor(layer.feature.properties[attribute] / layer.feature.properties[norm], breaks)
+                    fillColor: properColor
                 });
+                layer.on('mouseover', function (){
+                    layer.setStyle({
+                        fillColor: hoverColor
+                    })
+                });
+                layer.on('mouseout', function () {
+                    layer.setStyle({
+                    fillColor: properColor
+                    })
+                });
+                
+                var rate = (layer.feature.properties[attribute] / layer.feature.properties[norm])*100;
+                rate = rate.toFixed(2);
+                layer.bindPopup('<b>' + layer.feature.properties.NAME + ' County </b><br>' + attribute + ': ' + rate + '%');
             });
+    
             //console.log(layer.feature.properties);
 
             drawLegend(breaks);
 
         }
 
+        
         function getClassBreaks() {
 
             // code here to determine range and establish classification breaks
@@ -185,6 +217,7 @@
             return breaks; // return Array of class breaks
         }
 
+        
         function getColor(d, breaks) {
 
             if (d <= breaks[0][1]) {
@@ -200,6 +233,7 @@
             }
         }
 
+        
         function drawLegend(breaks) {
 
             // function code will go in here
@@ -230,6 +264,8 @@
             legend.addTo(map);
 
         }
+        
+        
     </script>
 
 </body>
