@@ -102,9 +102,9 @@
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
+        <p>Map authored by Hallie Liu, October 2016</p>
+        <p>Data for this  map was obtained using <a data-brackets-id='100' href = http://factfinder.census.gov/> American Fact Finder</a> and is from the 2010 US Census.</p>
+        <p>This map visualizes the average percentage of renter-occupied properties in each county of Kentucky, out of total occupied housing. Only renters who live on a property that is not vacant are represented in the percentage. Cartographic symbology can be used to lend assumed value to data represented on a map, or to emphasize certain trends in the data. For instance, on this map it might be easy for a reader to assume that counties with a higher percentage of renters are worse than other counties because they have fewer owner-occupied properties and are presumably less wealthy and less invested in keeping those counties nice. Even though this idea is not represented within the data being shown on the map, this map could be construed as a representation of poverty by county in Kentucky, but that would not be a correct interpretation. What it does begin to indicate are areas of Kentucky where residents are less rooted and potentially less loyal to the land, though a reason for that is not provided. 
         </p>
     </footer>
 
@@ -174,7 +174,8 @@
                 layer.on('mouseover', function (){
                     layer.setStyle({
                         fillColor: hoverColor
-                    })
+                    });
+                    layer.bindTooltip('<b>' + layer.feature.properties.NAME + ' County </b><br>' + attribute + ': ' + rate + '%').openTooltip();
                 });
                 layer.on('mouseout', function () {
                     layer.setStyle({
@@ -184,11 +185,10 @@
                 
                 var rate = (layer.feature.properties[attribute] / layer.feature.properties[norm])*100;
                 rate = rate.toFixed(2);
-                layer.bindPopup('<b>' + layer.feature.properties.NAME + ' County </b><br>' + attribute + ': ' + rate + '%');
+                // layer.bindPopup('<b>' + layer.feature.properties.NAME + ' County </b><br>' + attribute + ': ' + rate + '%');
             });
     
             //console.log(layer.feature.properties);
-
             drawLegend(breaks);
 
         }
