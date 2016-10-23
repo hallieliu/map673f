@@ -132,13 +132,13 @@
 
     <footer>
         <p>Map authored by Hallie Liu, October 2016</p>
-        <p>Data for this  map was obtained using <a href = http://factfinder.census.gov/> American Fact Finder</a> and is from the 2010 US Census.</p>
-        <p>This map visualizes the average percentage of owner-occupied properties in each county of Kentucky, for owners who have fully paid off their property. Only owners who live on a property of theirs that is "free and clear" are represented in the percentage; all occupied properties are included in the total. Cartographic symbology can be used to lend assumed value to data represented on a map, or to emphasize certain trends in the data. For instance, on this map it might be easy for a reader to assume that counties in the southeastern part of the state are "better" because they have a higher percentage of fully paid owner-occupied properties and are therefore wealthier, and are represented by higher saturation. The less-saturated counties might be interpreted as less desirable or less-important (or lower income), although these ideas are not represented within the data being shown on the map. This map could be construed as a representation of wealth by county in Kentucky, but that would not be a correct interpretation. What it does begin to indicate are areas of Kentucky where property owners are more rooted or loyal to the land, though a reason for that is not provided. 
-        </p>
+        <p>Data for this map was obtained using <a href=h ttp://factfinder.census.gov/> American Fact Finder</a> and is from the 2010 US Census.</p>
     </footer>
+
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-statistics/1.0.1/simple_statistics.js"></script>
+
     <script>
         // set initial options for the map
         var options = {
@@ -150,34 +150,36 @@
             zoomControl: false
         }
 
+        // create variable for map labels
         var labels = {
                 "VACANT": "total vacant units",
                 "VACANT_FOR": "% vacant units for rent",
                 "VACANT_REN": "% rented but vacant units",
                 "VACANT_FO2": "% vacant units for sale"
             }
-            // create a new Leaflet map, passing map options, and assign to variable
+        // create a new Leaflet map, passing map options, and assign to variable
         var map = L.map('map', options);
 
-        var dataLayer, // declare global variable for map units
-            attribute = "VACANT_FO2", // assign initial variable to store data attribute 
-            norm = "VACANT"; // asign initial variable to store normalizing data attribute
+        var dataLayer,                  // declare global variable for map units
+            attribute = "VACANT_FO2",   // assign initial variable to store data attribute 
+            norm = "VACANT";            // asign initial variable to store normalizing data attribute
 
         // QJuery AJAX request to load external GEoJSON file
         $.getJSON("ky_counties_housing.json", function (data) {
 
             // create Leaflet GeoJson layer with GeoJSON data and assign to global variable 
             dataLayer = L.geoJson(data, {
-                style: function (feature) { // style each feature of GeoJson layer
+                style: function (feature) {     // style each feature of GeoJson layer
                     return {
-                        color: '#dddddd', // set stroke color
-                        weight: 2, // set stroke weight
-                        fillOpacity: 1, // override defautl fill opacity
-                        fillColor: '#1f78b4' // set fill color
+                        color: '#dddddd',       // set stroke color
+                        weight: 2,              // set stroke weight
+                        fillOpacity: 1,         // override defautl fill opacity
+                        fillColor: '#1f78b4'    // set fill color
                     };
                 }
-            }).addTo(map); // add the Leaflet GeoJson layer to the map
+            }).addTo(map);                      // add the Leaflet GeoJson layer to the map
 
+            // call functions to populate/update the page
             drawLegend();
             drawMap();
             drawInfo();
@@ -204,27 +206,29 @@
                     fillColor: normColor
                 });
 
-                layer.bindPopup("<b>" + layer.feature.properties["NAME"] + " County</b></br>" +
-                    labels[attribute] + ": " + ((layer.feature.properties[attribute] /
-                        layer.feature.properties[norm]) * 100).toLocaleString());
-               
-                // add visual affordance on mouse hover
+                // add visual affordance on mouse hover, return to proper color on mouseout
                 layer.on('mouseover', function () {
                     updateInfo(this);
                     layer.setStyle({
-                    fillColor: hoverColor
+                        fillColor: hoverColor
                     });
                 });
 
                 layer.on('mouseout', function () {
                     updateInfo(this);
                     layer.setStyle({
-                    fillColor: normColor
+                        fillColor: normColor
                     });
                 });
+                
+                // create and format popup info window on click, for each individual county
+                layer.bindPopup("<b>" + layer.feature.properties["NAME"] + " County</b></br>" +
+                    labels[attribute] + ": " + ((layer.feature.properties[attribute] /
+                        layer.feature.properties[norm]) * 100).toLocaleString());
 
             });
 
+            // show info window with county details on mouse hover, otherwise hide
             dataLayer.on('mouseover', function () {
                 $(".info").show();
             });
@@ -284,10 +288,12 @@
 
         function drawLegend() {
 
+            // create a variable for the legend
             var legend = L.control({
                 position: 'topleft'
             });
 
+            // add the legend to the DOM
             legend.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'legend');
@@ -295,11 +301,14 @@
                 return div;
 
             };
-
+            
+            // add the legend to the map
             legend.addTo(map);
         }
 
         function buildUI() {
+            
+            // update map based on the dropdown form value that is selected
             $('select[id="vacant"]').change(function () {
 
                 attribute = $(this).val();
@@ -310,7 +319,8 @@
         }
 
         function updateLegend(breaks) {
-
+            
+            // update legend labels & info to match selection
             var legend = $('.legend').html("<h3>" + labels[attribute] + "</h3><ul>");
 
             for (var i = 0; i <= breaks.length - 1; i++) {
@@ -326,10 +336,12 @@
 
         function drawInfo() {
 
+            // create and place the info panel
             var info = L.control({
                 position: 'topright'
             });
 
+            // add the info panel to the DOM
             info.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'info');
@@ -337,15 +349,19 @@
                 return div;
 
             }
+            
+            // add the info panel to the map & hide it by default
             info.addTo(map);
             $(".info").hide();
 
         }
 
         function updateInfo(layer) {
-
+            
+            // variable for props
             var props = layer.feature.properties;
 
+            // update info in panel with jQuery
             var html = "<h3>" + props['NAME'] + " County</h3>" +
                 "total # vacant units: <b>" + props["VACANT"] + "</b><br>" +
                 "# vacant units for rent: <b>" + props["VACANT_FOR"] + "</b><br>" +
