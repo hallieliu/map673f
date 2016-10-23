@@ -191,27 +191,13 @@
 
             // loop through each layer of the GeoJson layer
             dataLayer.eachLayer(function (layer) {
-                var highLite = '#80a03b';
-                var noLite = '#dddddd';
-
-                layer.on('mouseover', function () {
-                    updateInfo(this);
-                    layer.setStyle({
-                        color: highLite
-                    });
-                });
-
-                layer.on('mouseout', function () {
-                    updateInfo(this);
-                    layer.setStyle({
-                        color: noLite
-                    });
-                });
 
                 // create shorthand variable to access layer properties
                 var props = layer.feature.properties;
 
+                // create variables for color values
                 var normColor = getColor(props[attribute] / props[norm], breaks);
+                var hoverColor = '#80a03b';
 
                 // change the fill color of the layer using the layer's attribute values
                 layer.setStyle({
@@ -221,13 +207,21 @@
                 layer.bindPopup("<b>" + layer.feature.properties["NAME"] + " County</b></br>" +
                     labels[attribute] + ": " + ((layer.feature.properties[attribute] /
                         layer.feature.properties[norm]) * 100).toLocaleString());
-                //                // bind a tooltip to the layer, populated with calculated layer attribtue values
-                //                layer.bindTooltip("<b>" + props["NAME"] + " County</b></br>" +
-                //                    attribute + ": " +
-                //                    ((props[attribute] / props[norm]) * 100).toLocaleString() + "%", {
-                //                        sticky: true
-                //                    });
+               
+                // add visual affordance on mouse hover
+                layer.on('mouseover', function () {
+                    updateInfo(this);
+                    layer.setStyle({
+                    fillColor: hoverColor
+                    });
+                });
 
+                layer.on('mouseout', function () {
+                    updateInfo(this);
+                    layer.setStyle({
+                    fillColor: normColor
+                    });
+                });
 
             });
 
