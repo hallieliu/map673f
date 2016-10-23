@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
 
     <style>
         body {
@@ -132,7 +132,9 @@
 
     <footer>
         <p>Map authored by Hallie Liu, October 2016</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Data for this  map was obtained using <a href = http://factfinder.census.gov/> American Fact Finder</a> and is from the 2010 US Census.</p>
+        <p>This map visualizes the average percentage of owner-occupied properties in each county of Kentucky, for owners who have fully paid off their property. Only owners who live on a property of theirs that is "free and clear" are represented in the percentage; all occupied properties are included in the total. Cartographic symbology can be used to lend assumed value to data represented on a map, or to emphasize certain trends in the data. For instance, on this map it might be easy for a reader to assume that counties in the southeastern part of the state are "better" because they have a higher percentage of fully paid owner-occupied properties and are therefore wealthier, and are represented by higher saturation. The less-saturated counties might be interpreted as less desirable or less-important (or lower income), although these ideas are not represented within the data being shown on the map. This map could be construed as a representation of wealth by county in Kentucky, but that would not be a correct interpretation. What it does begin to indicate are areas of Kentucky where property owners are more rooted or loyal to the land, though a reason for that is not provided. 
+        </p>
     </footer>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
@@ -189,29 +191,42 @@
 
             // loop through each layer of the GeoJson layer
             dataLayer.eachLayer(function (layer) {
+                var highLite = '#80a03b';
+                var noLite = '#dddddd';
+
+                layer.on('mouseover', function () {
+                    updateInfo(this);
+                    layer.setStyle({
+                        color: highLite
+                    });
+                });
+
+                layer.on('mouseout', function () {
+                    updateInfo(this);
+                    layer.setStyle({
+                        color: noLite
+                    });
+                });
 
                 // create shorthand variable to access layer properties
                 var props = layer.feature.properties;
 
+                var normColor = getColor(props[attribute] / props[norm], breaks);
+
                 // change the fill color of the layer using the layer's attribute values
                 layer.setStyle({
-                    fillColor: getColor(props[attribute] /
-                        props[norm], breaks)
+                    fillColor: normColor
                 });
 
-                layer.bindPopup("<b>"+layer.feature.properties["NAME"]+" County</b></br>" +
-                        labels[attribute] + ": " + ((layer.feature.properties[attribute]/
-                                layer.feature.properties[norm])*100).toLocaleString());
-//                // bind a tooltip to the layer, populated with calculated layer attribtue values
-//                layer.bindTooltip("<b>" + props["NAME"] + " County</b></br>" +
-//                    attribute + ": " +
-//                    ((props[attribute] / props[norm]) * 100).toLocaleString() + "%", {
-//                        sticky: true
-//                    });
-
-                layer.on('mouseover', function () {
-                    updateInfo(this);
-                });
+                layer.bindPopup("<b>" + layer.feature.properties["NAME"] + " County</b></br>" +
+                    labels[attribute] + ": " + ((layer.feature.properties[attribute] /
+                        layer.feature.properties[norm]) * 100).toLocaleString());
+                //                // bind a tooltip to the layer, populated with calculated layer attribtue values
+                //                layer.bindTooltip("<b>" + props["NAME"] + " County</b></br>" +
+                //                    attribute + ": " +
+                //                    ((props[attribute] / props[norm]) * 100).toLocaleString() + "%", {
+                //                        sticky: true
+                //                    });
 
 
             });
@@ -302,7 +317,7 @@
 
         function updateLegend(breaks) {
 
-           var legend = $('.legend').html("<h3>" + labels[attribute] + "</h3><ul>");
+            var legend = $('.legend').html("<h3>" + labels[attribute] + "</h3><ul>");
 
             for (var i = 0; i <= breaks.length - 1; i++) {
 
