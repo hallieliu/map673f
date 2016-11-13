@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>A simple map</title>
+    <title>Lab 05 Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -39,14 +39,37 @@
             maxBounds: L.latLngBounds([-6.22, 27.72], [5.76, 47.83])
         });
 
-        omnivore.geojson('population-kenya-counties-2009.geojson').addTo(map);
+        var counties = omnivore.geojson('population-kenya-counties-2009.geojson').addTo(map);
         omnivore.csv('pasha-ctrs-kenya-2016.csv')
             .on('ready', function (e) {
-                console.log(e.target)
+                //console.log(e.target)
+                drawMap(e.target.toGeoJSON);
             })
             .on('error', function (e) {
                 console.log(e.error[0].message);
             }).addTo(map);
+
+        //        console.log(counties);
+        //        
+
+
+        function drawMap(PCdata) {
+
+            console.log(PCdata);
+
+            var pashaCenters = L.geoJson(PCdata, {
+                pointToLayer: function (feature, layer) {
+                    return L.marker(layer);
+                }
+            }).addTo(map);
+            console.log(pashaCenters);
+
+            //            var pashaLocations = L.geoJson(PCdata, {
+            //                pointToLayer: function (feature, layer) {
+            //                    return L.marker(layer);
+            //                }
+            //            }).addTo(map);
+        }
     </script>
 
 </body>
