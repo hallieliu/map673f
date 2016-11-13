@@ -1,0 +1,61 @@
+ROUND,COUNTY,CONSTITUENCY,TOWN,NAME,OP,LANDMARK,SVC-DESC,LATITUDE,LONGITUDE,ACC-CHK
+1,KIAMBU,Kabete,Kikuyu township,,,,,-1.246032,36.664618,Y
+2,NAIROBI CITY,Starehe Constituency,Nairobi,East Africa Institute of Certified Studies,Open for business,"Information House, Mfangano Street","ICT Courses-Diploma & Certificate, ICDL Course, Cisco Academy, Online Jobs Digital Jobs Africa, Intel Courses, Photography, Video Shooting and Editing, Photocopy, Typesetting and Printing, Graphic Design",-1.28723,36.828128,Y
+2,KISII,Kitutu Chache Constituency,Kisii,Kitutu Resort Center,Open for business,Marani Secondary School,"Internet Services, Computer bureau services, Mpesa, Computer training - computer packages",-0.57895,34.797354,Y
+2,NAIROBI CITY,Kamukunji Constituency,Nairobi,Umbrella Pasha Center,Open for business,Eastleigh Section 3,"Internet services, ICT training, web design, networking, computer bureau services, graphic design, Mpesa, Agency banking.",-1.28392,36.857479,Y
+2,HOMA BAY,Kasipul Kabondo Constituency,Oyugis,Onetouch Tecnologies,Open for business,One Touch Technologies,"Internet services, computer bureau services, Computer training - computer packages, Mpesa",-0.50555,34.734141,Y
+2,KAKAMEGA,Lurambi Constituency,Kakamega,Riverterrace Pasha Center,Open for business,River Terrace Tech World Pasha,"Internet services, computer bureau services, Computer training - computer packages, Software development, graphic design, web design, networking, ICT consultancy - www.riverterrace.co.ke",0.28913,34.750056,Y
+2,NAIROBI CITY,Langata Constituency,,,,,,0,0,
+2,NAKURU,Molo Constituency,Molo,Molo Pasha Center,Open for business,Molo Police Station,"Internet services, computer bureau services, Computer training - computer packages, supply of ICT equipments",-0.24629,35.734405,
+2,NYANDARUA,Ndaragwa Constituency,Ndaragwa,Wanicom Pasha Center,Open for business,Ndaragwa Polce station,"Internet services, computer bureau services, Stationary, mobile phone accessories, accounting consultancy.",-0.05889,36.528602,
+2,MERU,Ntonyiri Constituency,Maua,Iware Systems,Open for business,Oilibya Maua Gas Station,"Internet services, Computer bureau services, Computer package training, computer accessories.",0.23741,37.940093,Y
+2,NAKURU,Subukia Constituency,,,,,,0,0,
+1,KAKAMEGA,Matungu,Bulimbo,,,St James Bulimbo Girls Secondary,,0.4345807,34.5131797,Y
+1,MERU,Igembe,Meru,,,,,0,0,
+2,KIAMBU,Lari Constituency,,,,,,0,0,
+2,NAIROBI CITY,Dagoretti Constituency,Nairobi,Dagorreti Digital Village,Open for business,Dagoretti Empowerment Centre┬á,"Internet services, bureau services, ICT training: computer application, graphic design, computerised accounting, entreprenuership, communication skills, online work, work place training, web design, programming.",-1.2878,36.741401,Y
+2,NAKURU,Naivasha Constituency,Gilgil,Wweb Pasha Center,Open for business,Hunters Building - Airtel Money Gilgil,"Internet services, Computer training - computer packages, computer bureau services - Printing, photocopy, passports",-0.50163,36.325263,Y
+2,KAKAMEGA,Malava Constituency,Kakamega,Malava Pasha Center,Open for business,Kakunga market,"Computer training - computer packages, computer bureau services - Printing, photocopy, passports",0.37674,34.852661,
+2,NAROK,Narok North Constituency,Narok,Hubnet Communications,Open for business,Naivas Supermarket - Narok,"Internet Services - Cyber/online services, Computer training, computer bureau services.",-1.08845,35.869535,Y
+2,KISUMU,Kisumu Town East Constituency,,,,,,0,0,
+2,MURANGA,Gatanga Constituency,Gatanga,Eixma Technologies,Open then Closed,Kirwara Market,"computer bureau services, Internet services, Mpesa, photgraphy",-0.92956,36.943086,
+2,MACHAKOS,Machakos Town Constituency,,,,,,0,0,
+1,SIAYA,Alego,Ndere Shopping Centre,,,,,0.055829,34.290348,Y
+1,VIHIGA,Vihiga,Majengo,,,Rafiki Microfinance Bank - Mbale,,0,0,
+1,MERU,North Imenti,Makutano,,,,,0,0,
+1,MERU,Central Imenti,Chaaria,,,,,0,0,
+1,KIAMBU,Limuru,Limuru,,,,,0,0,
+2,EMBU,Runyenjes Constituency,,,,,,0,0,
+1,MOMBASA,Likoni,Mombasa town,,,,,0,0,
+2,NAROK,Narok South Constituency,Ololunga,Arovid Digital Center,Open for business,Ololunga Post Office,"Internet services, computer bureau services, stationary, financial agency, computer packages training, computer repairs, tendering.",-0.99962,35.666921,
+2,KIRINYAGA,Kerugoya/Kutus Constituency,Kerugoya,Kerugoya Pasha Center,Open for business,KCB Kerugoya,"Internet services, computer bureau services, Play station, supply of stationary and computers.",-0.50961,37.284464,Y
+1,MAKUENI,Makueni,Wote town,,Non Starter,,,0,0,
+1,BUSIA,Funyula,Funyula,,,,,0,0,
+1,NYANDARUA,Kinangop,Engineer,,,,,0,0,
+1,BUSIA,Butula,Butula,Zactech ICT Communication Enterprise,,Butula Girls Primary School,"Cyber Caf├⌐ Services, Lamination and binding, KRA PIN, Stationery",0.3415317,34.3336836,Y
+2,MIGORI,Rongo Constituency,Rongo,Hubnet Computers,Open for business,Rongo Market,"Internet services, Computer bureau services, Computer package training",-0.75569,34.600073,
+1,EMBU,Manyatta,Embu,,,"Daima Sacco Bank, Mama Ngina Street",,-0.53413,37.451706,
+1,BOMET,Bomet,Bomet,,Closed for Business,,,0,0,
+1,NYANDO,Nyakach,PAP-ONDITI,,,,,0,0,
+2,NAKURU,Nakuru Town Constituency,,,,,,0,0,
+2,BUNGOMA,Kimilili Constituency,Kimilili-Bungoma,Kimilili Pasha Center,Open for business,Mt.Crest Hotel,"Internet services, computer bureau services, Computer training - computer packages, KRA return filing, laminating",0.78516,34.718353,Y
+2,LAIKIPIA,Laikipia East Constituency,Nanyuki,Nanyuki ICT Hub - Pasha Center,Open for business,KFA Building - Next CMC Motors,"ICT training : computer packages , International Computer Driving License ICDL , A+ , N+ , CCNA, e-government services, Internet service, Bureau services, Data / Information management and back up services, Information Technology and entrepreneurial ca",0.00944,37.073461,Y
+2,MURANGA,Mathioya Constituency,,,,,,0.14914,36.371516,Y
+1,MIGORI,Migori,Migori,,,,,0,0,
+1,MERU,Nithi,Chogoria,Realmart Commuications,Open for business,Chogoria Hospital,"Internet services, computer bureau services - Printing, photocopy, passports",-0.22965,37.627777,Y
+1,LAIKIPIA,Laikipia West,Subuku,Giga Pasha Center,Open for business,Subuku Shopping Center,"Computer training - computer packages, computer bureau services - Printing, photocopy, passports",-0.11224,36.460106,
+1,NYANDARUA,Ol Kalou,Mirangine,Mirangine Pasha Center,Open for business,Gwa-Kiongo Dam,"Computer training - computer packages, computer bureau services - Printing, photocopy, passports, Internet Services, money transfer",-0.17866,36.247491,
+1,KIAMBU,Gatundu North,Gatukuyu,Jambo World Technologies,Open for business,Kobil Gatukuyu,"Computer bureau services, Internet services, Videography, software development - school management systems",-1.22764,36.879965,Y
+1,KISUMU,Kisumu Town West,Kisumu Town,,,,,0,0,
+1,NANDI,Emgwen,Kapsabet,,,,,0,0,
+1,KISUMU,Nyando,AWASI,,,,,0,0,
+1,KIAMBU,Juja,Ruiru,Juja Pasha Center - Ruiru,Closed but to re-open,Spinners Secondary School,"ICT training, Digital content development, elearning, Internet services.",-1.1524,36.950402,Y
+1,KILIFI,Malindi,Malindi,,,,,0,0,
+1,MACHAKOS,Mbooni,Mbumbuni,,,,,0,0,
+1,MURANGA,Maragua,Maragua,,,,,0,0,
+1,KAJIADO,Kajiado,Kitengela township,,Closed for Business,,,-1.47832,36.958693,Y
+1,Muranga,Kigumo,Kangari,,,,,-0.80217,36.961695,Y
+1,GARISSA,Ijara,Masalani town,,,,,0,0,
+1,KERICHO,Belgut,Sosoit,,,,,0,0,
+1,KILIFI,Kaloleni,Kaloleni,,,,,0,0,
+1,BARINGO,Baringo Central,Karbarnet,,,,,0,0,
