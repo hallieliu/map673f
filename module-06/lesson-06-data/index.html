@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Map 673 Lesson 06 Template</title>
@@ -11,14 +12,104 @@
             background: whitesmoke;
             font-family: Montserrat, sans-serif;
         }
+        
+        .county {
+            stroke: #fff;
+            fill: #005DAA;
+        }
+        
+        .hover {
+            fill: yellow;
+        }
+        
+        h1,
+        h2 {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            font-size: 2em;
+            font-weight: 100;
+            color: #005DAA;
+        }
+        
+        h2 {
+            top: 60px;
+            font-size: 1.2em;
+        }
+        
+        #map {
+            width: 900px;
+            height: 600px;
+            margin: 10px auto;
+            border: 1px solid #d3d3d3;
+        }
+        
+        .land {
+            fill: #d3d3d3;
+        }
     </style>
 </head>
+
 <body>
 
-<script>
+    <h1>US Counties</h1>
+    <h2></h2>
+    <div id="map"></div>
 
-   // custom JS goes here
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 
-</script>
+    <script>
+        var width = 1257,
+            height = 600;
+
+        var svg = d3.select("#map") // select the document's body
+            .append("svg") // create and append a new svg element to it
+            .attr("width", width) // give the svg width
+            .attr("height", height); // give the svg height
+
+        var projection = d3.geo.albers() // create a new d3 projection function, albers equal area
+            .scale(1100) // play with the scale until it's 'zoomed' about right
+            .translate([width / 2, height / 2]); // center the svg (0,0 is top, left)
+
+        var geoPath = d3.geo.path() //  create a new geo path generator
+            .projection(projection); // assign the project we just created to it
+
+        queue()
+            .defer(d3.json, "us-counties.json")
+            .defer(d3.json, "na_land_clipped.json")
+            .await(makeMap);
+
+
+
+
+        function makeMap(error, counties, na) {
+
+            svg.append("g")
+                .selectAll("path")
+                .data(na.features)
+                .enter()
+                .append("path")
+                .attr("d", geoPath)
+                .attr("class", "land");
+
+            svg.append('g')
+                .selectAll('path')
+                .data(counties.features)
+                .enter()
+                .append('path')
+                .attr("d", geoPath)
+                .attr('class', 'county')
+                .on("mouseover", function (d) {
+                    d3.select("h2").text(d.properties.NAME + ' county');
+                    d3.select(this).attr("class", "county hover");
+                })
+                .on("mouseout", function (d) {
+                    d3.select("h2").text("");
+                    d3.select(this).attr("class", "county");
+                });
+        }
+    </script>
 </body>
+
 </html>
