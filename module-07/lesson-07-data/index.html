@@ -25,10 +25,30 @@
 
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <script>
-
-        // your JS here
-
+        var map = L.map('map', {
+            center: [40, -104],
+            zoom: 4
+        });
         
+        var cartoCSS = "#layer {" +
+                        "polygon-fill: steelblue;" +
+                        "line-width: 1;" +
+                        "line-color: #FFF;" +
+                        "line-opacity: 0.5;" +
+                        "}";
+
+        var sourceObject = {
+            user_name: 'halliu', // string of your CARTO user name,
+            type: 'cartodb',
+            sublayers: [
+                {
+                    sql: "SELECT * FROM uninsured_adults_county",
+                    cartocss: cartoCSS
+        }
+    ]
+        }
+
+        cartodb.createLayer(map, sourceObject).addTo(map);
     </script>
 </body>
 
