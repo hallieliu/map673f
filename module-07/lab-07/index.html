@@ -7,6 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 
     <style>
         html,
@@ -16,34 +17,50 @@
             padding: 0;
             margin: 0;
         }
+        
+        h1 {
+            position: absolute;
+            z-index: 100;
+            top: 10px;
+            left: 60px;
+            padding: 8px 15px;
+            margin: 0;
+            color: whitesmoke;
+            font-size: 1.5em;
+            background: rgba(25, 25, 25, 0.8);
+            border-radius: 5px;
+            font-family: Didact Gothic;
+        }
+        
+        h2 {
+            position: absolute;
+            z-index: 100;
+            top: 60px;
+            left: 60px;
+            margin: 0;
+            padding: 8px 25px 8px 15px;
+            color: #1C9976;
+            font-weight: 500;
+            font-size: 1.2em;
+            text-align: right;
+            background: rgba(25, 25, 25, 0.8);
+            border-radius: 5px;
+            font-family: Didact Gothic;
+        }
+        
+        a {
+            color: aquamarine;
+        }
     </style>
 </head>
 
 <body>
 
     <div id="map"></div>
-    <div class="CDB-infowindow CDB-infowindow--light js-infowindow">
-  <div class="CDB-infowindow-close js-close"></div>
-  <div class="CDB-infowindow-container">
-    <div class="CDB-infowindow-header CDB-infowindow-headerBg CDB-infowindow-headerBg--light js-header" style="background: #35AAE5;">
-      
-      <ul class="CDB-infowindow-list">
-            <li class="CDB-infowindow-listItem">
-              <h5 class="CDB-infowindow-subtitle">{{true}}</h5>
-              
-            </li>
-      </ul>
+    <div id="wordstuffs">
+        <h1>US Animal Rescue Shelters</h1>
+        <h2>Animal shelter location data courtesy of <a data-brackets-id='100' href = http://www.poi-factory.com/node/31702/> POI Factory</a> . </h2>
     </div>
-    <div class="CDB-infowindow-inner js-inner">
-      <ul class="CDB-infowindow-list js-content">
-      </ul>
-    </div>
-    <div class="CDB-hook">
-      <div class="CDB-hook-inner"></div>
-    </div>
-  </div>
-</div>
-
 
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <script type="cartocss/html" id="shelter-styles">
@@ -56,7 +73,7 @@
     </script>
     <script type="cartocss/html" id="land-styles">
 
-        #na_land_clipped['mapnik::geometry_type'=1] { marker-width: 7; marker-fill: #FFB927; marker-fill-opacity: 0.9; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-placement: point; marker-type: ellipse; marker-allow-overlap: true; } #na_land_clipped['mapnik::geometry_type'=2] { line-color: #3EBCAE; line-width: 1.5; line-opacity: 1; } #na_land_clipped['mapnik::geometry_type'=3] { polygon-fill: #374C70; polygon-opacity: 0.9; polygon-gamma: 0.5; line-color: #FFF; line-width: 1; line-opacity: 0.5; line-comp-op: soft-light; }
+        #layer { polygon-fill: #464646; polygon-opacity: 0.9; line-width: 1; line-color: #FFF; line-opacity: 0.5; }
     </script>
     <script>
         var map = L.map('map', {
